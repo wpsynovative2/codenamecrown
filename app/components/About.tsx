@@ -16,7 +16,7 @@ export default function About() {
 
           <figure className="about__figure">
             <Image
-              src="/images/Biometric Entry gate.jpeg"
+              src="/images/About_us_img.jpg"
               alt="Biometric entry gate at Codename Crown"
               width={912}
               height={1177}

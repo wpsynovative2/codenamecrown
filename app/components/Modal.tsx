@@ -54,6 +54,9 @@ export default function Modal({ onClose, labelledBy, children }: ModalProps) {
   return (
     <div
       className="modal-overlay"
+      /* Lenis skips elements marked this way, so the dialog keeps its own
+         native scrolling while the page behind it is frozen. */
+      data-lenis-prevent
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}

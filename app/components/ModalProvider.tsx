@@ -8,6 +8,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import { useLenis } from "lenis/react";
 import Modal from "./Modal";
 import EnquiryForm from "./EnquiryForm";
 import { PRIVACY, TERMS } from "../data/site";
@@ -37,6 +38,7 @@ export default function ModalProvider({
 }) {
   const [kind, setKind] = useState<ModalKind>(null);
   const [source, setSource] = useState("Enquire Now");
+  const lenis = useLenis();
 
   const close = useCallback(() => setKind(null), []);
 
@@ -53,15 +55,21 @@ export default function ModalProvider({
     [close]
   );
 
-  // Lock body scroll while any modal is open.
+  // Lock body scroll while any modal is open. Lenis consumes wheel and touch
+  // events itself, so stopping it is what actually freezes the page behind the
+  // dialog; the overflow lock still covers keyboard and scrollbar dragging.
+  // The dialog carries data-lenis-prevent, which Lenis honours even when
+  // stopped, so its own content stays scrollable.
   useEffect(() => {
     if (!kind) return;
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    lenis?.stop();
     return () => {
       document.body.style.overflow = previous;
+      lenis?.start();
     };
-  }, [kind]);
+  }, [kind, lenis]);
 
   return (
     <ModalContext.Provider value={value}>

@@ -2,7 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { DM_Sans, Jost, Poppins, Roboto } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import "lenis/dist/lenis.css";
 import ModalProvider from "./components/ModalProvider";
+import SmoothScroll from "./components/SmoothScroll";
 
 const GTM_ID = "GTM-P4J3HNT2";
 
@@ -104,7 +106,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
 
-        <ModalProvider>{children}</ModalProvider>
+        <SmoothScroll>
+          <ModalProvider>{children}</ModalProvider>
+        </SmoothScroll>
       </body>
     </html>
   );
