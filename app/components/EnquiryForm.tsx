@@ -1,6 +1,7 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useId, useState } from "react";
 import {
   EnquiryErrors,
   EnquiryValues,
@@ -21,6 +22,7 @@ type EnquiryFormProps = {
 
 export default function EnquiryForm({ source, onSuccess }: EnquiryFormProps) {
   const uid = useId();
+  const router = useRouter();
   const { openTerms, openPrivacy } = useModal();
 
   const [values, setValues] = useState<EnquiryValues>(INITIAL_VALUES);
@@ -31,6 +33,24 @@ export default function EnquiryForm({ source, onSuccess }: EnquiryFormProps) {
   // Snapshot of the hidden fields, shown read-only exactly like the original.
   const [submittedAt] = useState(() => currentDateTime());
   const [pageUrl] = useState(() => currentUrl());
+
+  // The redirect should feel instant, so warm the route while they type.
+  useEffect(() => {
+    router.prefetch("/thank-you");
+  }, [router]);
+
+  /**
+   * Shared success path for a real submission and a honeypot hit — a bot must
+   * not be able to tell the two apart.
+   *
+   * The dialog is closed first: ModalProvider lives in the root layout, so its
+   * state survives the navigation and the dialog would otherwise still be
+   * sitting open on top of the thank-you page.
+   */
+  const goToThankYou = () => {
+    onSuccess?.();
+    router.push("/thank-you");
+  };
 
   const setField = <K extends keyof EnquiryValues>(
     key: K,
@@ -55,6 +75,7 @@ export default function EnquiryForm({ source, onSuccess }: EnquiryFormProps) {
     if (values.website.trim() !== "") {
       setStatus("success");
       setStatusMessage("Thank you! Our property expert will contact you shortly.");
+      goToThankYou();
       return;
     }
 
@@ -75,9 +96,7 @@ export default function EnquiryForm({ source, onSuccess }: EnquiryFormProps) {
       setStatus("success");
       setStatusMessage("Thank you! Our property expert will contact you shortly.");
       setValues(INITIAL_VALUES);
-
-      // Give the visitor a moment to read the confirmation before closing.
-      if (onSuccess) window.setTimeout(onSuccess, 2200);
+      goToThankYou();
     } catch (error) {
       setStatus("error");
       setStatusMessage(
@@ -234,7 +253,9 @@ export default function EnquiryForm({ source, onSuccess }: EnquiryFormProps) {
         <button
           type="submit"
           className="form__submit"
-          disabled={status === "submitting"}
+          /* Stays disabled through "success" too, so the redirect can't be
+             raced by a second click. */
+          disabled={status === "submitting" || status === "success"}
         >
           {status === "submitting" ? "Sending…" : "Send Enquiry"}
         </button>

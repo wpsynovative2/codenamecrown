@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { NAV_LINKS } from "../data/site";
 import { useModal } from "./ModalProvider";
@@ -21,7 +22,7 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header__inner">
-        <a className="header__logo" href="#top" aria-label="Codename Crown home">
+        <Link className="header__logo" href="/#top" aria-label="Codename Crown home">
           <Image
             src="/images/codename-crown-logo.png"
             alt="Codename Crown"
@@ -29,7 +30,7 @@ export default function Header() {
             height={557}
             priority
           />
-        </a>
+        </Link>
 
         <div className="header__right">
           <nav
@@ -39,9 +40,9 @@ export default function Header() {
             <ul>
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} onClick={() => setOpen(false)}>
+                  <Link href={link.href} onClick={() => setOpen(false)}>
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

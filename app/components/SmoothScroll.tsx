@@ -64,10 +64,15 @@ function AnchorLinks() {
       });
     };
 
-    document.addEventListener("click", onClick);
+    // Capture phase, so this runs before next/link's own handler: the links are
+    // <Link href="/#section">, which work as real navigations from other routes
+    // but must scroll rather than navigate while already on the home page.
+    // Link bails out when it sees defaultPrevented, so whoever prevents first
+    // wins — and that has to be this.
+    document.addEventListener("click", onClick, true);
     window.addEventListener("popstate", onPopState);
     return () => {
-      document.removeEventListener("click", onClick);
+      document.removeEventListener("click", onClick, true);
       window.removeEventListener("popstate", onPopState);
     };
   }, [lenis]);

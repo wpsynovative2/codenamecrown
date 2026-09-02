@@ -3,15 +3,17 @@
  * Kept in one place so content edits never require touching layout code.
  */
 
+/* Root-relative so the header still works from other routes (e.g. /thank-you),
+   where a bare "#overview" would resolve against that path instead of home. */
 export const NAV_LINKS = [
-  { label: "overview", href: "#overview" },
-  { label: "about-us", href: "#about-us" },
-  { label: "highlights", href: "#highlights" },
-  { label: "amenities", href: "#amenities" },
-  { label: "eoi benefits", href: "#eoi-benefits" },
-  { label: "configuration", href: "#configuration" },
-  { label: "connectivity", href: "#connectivity" },
-  { label: "contact us", href: "#contact-us" },
+  { label: "overview", href: "/#overview" },
+  { label: "about-us", href: "/#about-us" },
+  { label: "highlights", href: "/#highlights" },
+  { label: "amenities", href: "/#amenities" },
+  { label: "eoi benefits", href: "/#eoi-benefits" },
+  { label: "configuration", href: "/#configuration" },
+  { label: "connectivity", href: "/#connectivity" },
+  { label: "contact us", href: "/#contact-us" },
 ];
 
 export const CONTACT = {
