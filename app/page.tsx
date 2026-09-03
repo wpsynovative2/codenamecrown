@@ -10,6 +10,7 @@ import Connectivity from "./components/Connectivity";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import StickyBar from "./components/StickyBar";
+import AutoEnquiry from "./components/AutoEnquiry";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
       </main>
       <Footer />
       <StickyBar />
+      <AutoEnquiry />
     </>
   );
 }

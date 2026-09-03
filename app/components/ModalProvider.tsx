@@ -21,6 +21,8 @@ type ModalContextValue = {
   openTerms: () => void;
   openPrivacy: () => void;
   close: () => void;
+  /** True while any dialog is on screen. */
+  isOpen: boolean;
 };
 
 const ModalContext = createContext<ModalContextValue | null>(null);
@@ -40,19 +42,26 @@ export default function ModalProvider({
   const [source, setSource] = useState("Enquire Now");
   const lenis = useLenis();
 
+  // These stay referentially stable on purpose: `value` has to change whenever
+  // `kind` does (for isOpen), and consumers that key effects off a callback —
+  // AutoEnquiry's timer — must not be torn down every time a dialog opens.
   const close = useCallback(() => setKind(null), []);
+  const openEnquiry = useCallback((from: string) => {
+    setSource(from);
+    setKind("enquiry");
+  }, []);
+  const openTerms = useCallback(() => setKind("terms"), []);
+  const openPrivacy = useCallback(() => setKind("privacy"), []);
 
   const value = useMemo<ModalContextValue>(
     () => ({
-      openEnquiry: (from: string) => {
-        setSource(from);
-        setKind("enquiry");
-      },
-      openTerms: () => setKind("terms"),
-      openPrivacy: () => setKind("privacy"),
+      openEnquiry,
+      openTerms,
+      openPrivacy,
       close,
+      isOpen: kind !== null,
     }),
-    [close]
+    [openEnquiry, openTerms, openPrivacy, close, kind]
   );
 
   // Lock body scroll while any modal is open. Lenis consumes wheel and touch

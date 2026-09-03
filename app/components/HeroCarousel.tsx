@@ -6,8 +6,8 @@ import { HERO_SLIDES_DESKTOP, HERO_SLIDES_MOBILE } from "../data/site";
 import { useMediaQuery } from "../lib/useMediaQuery";
 import { IconChevronLeft, IconChevronRight } from "./Icons";
 
-/** Matches the original Elementor carousel: 1 slide, 5s autoplay, infinite. */
-const AUTOPLAY_MS = 5000;
+/** 1 slide at a time, infinite, advancing every 3s. Pauses on hover. */
+const AUTOPLAY_MS = 3000;
 
 export default function HeroCarousel() {
   const isMobile = useMediaQuery("(max-width: 767px)");

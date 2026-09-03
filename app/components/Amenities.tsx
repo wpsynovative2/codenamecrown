@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AMENITIES, UTILITIES } from "../data/site";
 import { useMediaQuery } from "../lib/useMediaQuery";
 import {
@@ -13,6 +13,9 @@ import {
   IconTable,
   IconToggleOn,
 } from "./Icons";
+
+/** Matches the hero carousel's cadence. Pauses on hover. */
+const AUTOPLAY_MS = 3000;
 
 const UTILITY_ICONS = {
   table: IconTable,
@@ -32,6 +35,7 @@ function usePerView(): number {
 export default function Amenities() {
   const perView = usePerView();
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   const maxIndex = Math.max(0, AMENITIES.length - perView);
 
@@ -42,6 +46,19 @@ export default function Amenities() {
     const next = current + delta;
     setIndex(next < 0 ? maxIndex : next > maxIndex ? 0 : next);
   };
+
+  useEffect(() => {
+    // Nothing to advance through when every card already fits on screen.
+    if (paused || maxIndex < 1) return;
+
+    const timer = window.setInterval(() => {
+      // Clamp inside the updater too: a breakpoint change can leave `index`
+      // past the new maxIndex, and the stale value would otherwise stick.
+      setIndex((i) => (Math.min(i, maxIndex) >= maxIndex ? 0 : Math.min(i, maxIndex) + 1));
+    }, AUTOPLAY_MS);
+
+    return () => window.clearInterval(timer);
+  }, [paused, maxIndex]);
 
   return (
     <>
@@ -58,7 +75,11 @@ export default function Amenities() {
             designed to add more to your everyday life.
           </p>
 
-          <div className="amenity-carousel">
+          <div
+            className="amenity-carousel"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
             <div className="amenity-carousel__viewport">
               <div
                 className="amenity-carousel__track"
