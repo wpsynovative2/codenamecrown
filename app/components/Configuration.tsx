@@ -54,13 +54,13 @@ export default function Configuration() {
           </table>
         </div>
 
-        <div className="gradient-rule" style={{ marginBlock: 40 }} />
+        {/* <div className="gradient-rule" style={{ marginBlock: 40 }} /> */}
 
-        <div className="rule-heading">
+        {/* <div className="rule-heading">
           <span>UNIT PLAN</span>
-        </div>
+        </div> */}
 
-        <div className="tabs__list" role="tablist" aria-label="Unit plans">
+        {/* <div className="tabs__list" role="tablist" aria-label="Unit plans">
           {TABS.map((tab) => (
             <button
               key={tab}
@@ -75,8 +75,8 @@ export default function Configuration() {
               {tab}
             </button>
           ))}
-        </div>
-
+        </div> */}
+        {/* 
         <div
           className="tabs__panel"
           role="tabpanel"
@@ -106,7 +106,7 @@ export default function Configuration() {
               </div>
             </article>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

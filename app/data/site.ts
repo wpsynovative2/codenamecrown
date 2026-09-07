@@ -30,12 +30,12 @@ export const CONTACT = {
 };
 
 export const HERO_SLIDES_DESKTOP = [
-  "/images/Slider-pg-1.jpg.jpeg",
+  "/images/Desktop_Hero1.jpeg",
   "/images/Slider-pg-2.jpg.jpeg",
 ];
 
 export const HERO_SLIDES_MOBILE = [
-  "/images/3.jpg-1mb.jpeg",
+  "/images/mobile_hero1.jpeg",
   "/images/2.jpg-1mb.jpeg",
 ];
 
@@ -66,16 +66,31 @@ export const HIGHLIGHTS = [
 ] as const;
 
 export const AMENITIES = [
-  { name: "EV Parking Stations", image: "/images/amenities/EV_Parking_Stations.jpeg" },
-  { name: "Roof-Top Amphitheatre", image: "/images/amenities/Roof_Top_Amphitheatre.jpeg" },
+  {
+    name: "EV Parking Stations",
+    image: "/images/amenities/EV_Parking_Stations.jpeg",
+  },
+  {
+    name: "Roof-Top Amphitheatre",
+    image: "/images/amenities/Roof_Top_Amphitheatre.jpeg",
+  },
   { name: "Indoor Games", image: "/images/amenities/Indoor_Games.jpeg" },
   { name: "Play Area", image: "/images/amenities/Play_Area.jpeg" },
   { name: "Open Gym", image: "/images/amenities/Outdoor_gym.jpeg" },
-  { name: "Multi-Purpose Hall", image: "/images/amenities/Mult_Purpose_Hall.jpeg" },
-  { name: "Sky Meditation Deck", image: "/images/amenities/Sky_Meditation_Deck.png" },
+  {
+    name: "Multi-Purpose Hall",
+    image: "/images/amenities/Mult_Purpose_Hall.jpeg",
+  },
+  {
+    name: "Sky Meditation Deck",
+    image: "/images/amenities/Sky_Meditation_Deck.png",
+  },
   { name: "Gymnasium", image: "/images/amenities/Gymnasium.png" },
   { name: "Co-Working Space", image: "/images/amenities/Co-Working Space.png" },
-  { name: "Multi Purpose Court", image: "/images/amenities/Multi_Purpose_Court.jpeg" },
+  {
+    name: "Multi Purpose Court",
+    image: "/images/amenities/Multi_Purpose_Court.jpeg",
+  },
 ];
 
 export const UTILITIES = [
@@ -94,18 +109,42 @@ export const CONFIGURATION_ROWS = [
 
 export const UNIT_PLANS = {
   "1BHK": [
-    { title: "1BHK — 391 sq.ft.", image: "/images/Unit_plans/1 BHK — 391 sq ft.png" },
-    { title: "1BHK — 435.4 sq.ft.", image: "/images/Unit_plans/1 BHK — 435.4 sq ft.png" },
-    { title: "1BHK — 475 sq.ft.", image: "/images/Unit_plans/1 BHK — 475 sq ft.png" },
+    {
+      title: "1BHK — 391 sq.ft.",
+      image: "/images/Unit_plans/1 BHK — 391 sq ft.png",
+    },
+    {
+      title: "1BHK — 435.4 sq.ft.",
+      image: "/images/Unit_plans/1 BHK — 435.4 sq ft.png",
+    },
+    {
+      title: "1BHK — 475 sq.ft.",
+      image: "/images/Unit_plans/1 BHK — 475 sq ft.png",
+    },
   ],
   "2BHK": [
-    { title: "2BHK — 601 sq.ft.", image: "/images/Unit_plans/2 BHK — 601 sq ft.png" },
-    { title: "2BHK — 621 sq.ft.", image: "/images/Unit_plans/2 BHK — 621.5 sq ft.png" },
-    { title: "2BHK — 641 sq.ft.", image: "/images/Unit_plans/2 BHK — 641 sq ft.png" },
-    { title: "2BHK — 644 sq.ft.", image: "/images/Unit_plans/2 BHK — 644 sq ft.png" },
+    {
+      title: "2BHK — 601 sq.ft.",
+      image: "/images/Unit_plans/2 BHK — 601 sq ft.png",
+    },
+    {
+      title: "2BHK — 621 sq.ft.",
+      image: "/images/Unit_plans/2 BHK — 621.5 sq ft.png",
+    },
+    {
+      title: "2BHK — 641 sq.ft.",
+      image: "/images/Unit_plans/2 BHK — 641 sq ft.png",
+    },
+    {
+      title: "2BHK — 644 sq.ft.",
+      image: "/images/Unit_plans/2 BHK — 644 sq ft.png",
+    },
   ],
   "3BHK": [
-    { title: "3BHK — 960 sq.ft.", image: "/images/Unit_plans/3 BHK — 960 sq ft.png" },
+    {
+      title: "3BHK — 960 sq.ft.",
+      image: "/images/Unit_plans/3 BHK — 960 sq ft.png",
+    },
   ],
 };
 
@@ -189,7 +228,8 @@ export const PRIVACY = {
     "Data Protection: We implement reasonable security measures to protect your data from unauthorized access, misuse, or disclosure.",
     "Your Choice: You may request access, correction, or deletion of your data by contacting us through the provided contact details.",
   ],
-  outro: "By using this website, you agree to the terms outlined in this Privacy Policy.",
+  outro:
+    "By using this website, you agree to the terms outlined in this Privacy Policy.",
 };
 
 export const SOCIAL = {
@@ -201,5 +241,5 @@ export const SOCIAL = {
 
 /** Prefilled WhatsApp message, matching the original's deep link. */
 export const WHATSAPP_TEXT = encodeURIComponent(
-  "Hi, I'm interested in your project. I'd like to know more about the pricing and availability."
+  "Hi, I'm interested in your project. I'd like to know more about the pricing and availability.",
 );
