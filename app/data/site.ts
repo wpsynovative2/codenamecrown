@@ -30,12 +30,12 @@ export const CONTACT = {
 };
 
 export const HERO_SLIDES_DESKTOP = [
-  "/images/Desktop_Hero1.jpeg",
+  "/images/Desktop_Hero1.webp",
   "/images/Slider-pg-2.jpg.jpeg",
 ];
 
 export const HERO_SLIDES_MOBILE = [
-  "/images/mobile_hero1.jpeg",
+  "/images/mobile_hero1.webp",
   "/images/2.jpg-1mb.jpeg",
 ];
 
